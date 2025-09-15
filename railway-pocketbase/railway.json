@@ -1,7 +1,7 @@
 {
   "$schema": "https://railway.app/railway.schema.json",
   "deploy": {
-    "startCommand": "./pocketbase serve --http=0.0.0.0:$PORT",
+    "startCommand": "sh -c './pocketbase serve --http=0.0.0.0:${PORT:-8090}'",
     "healthcheckPath": "/api/health",
     "healthcheckTimeout": 100,
     "restartPolicyType": "ON_FAILURE",
