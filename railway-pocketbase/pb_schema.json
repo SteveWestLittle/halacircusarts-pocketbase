@@ -1,0 +1,207 @@
+{
+  "collections": [
+    {
+      "name": "characters",
+      "type": "base",
+      "schema": [
+        {
+          "name": "name",
+          "type": "text",
+          "required": true
+        },
+        {
+          "name": "description",
+          "type": "editor",
+          "required": true
+        },
+        {
+          "name": "short_description",
+          "type": "text",
+          "required": true
+        },
+        {
+          "name": "featured_image",
+          "type": "file",
+          "required": true
+        },
+        {
+          "name": "gallery",
+          "type": "file",
+          "required": false,
+          "options": {
+            "maxSelect": 10,
+            "maxSize": 5242880,
+            "mimeTypes": [
+              "image/jpg",
+              "image/jpeg",
+              "image/png",
+              "image/webp"
+            ]
+          }
+        },
+        {
+          "name": "skills",
+          "type": "json",
+          "required": false
+        },
+        {
+          "name": "performance_duration",
+          "type": "text",
+          "required": false
+        },
+        {
+          "name": "setup_requirements",
+          "type": "editor",
+          "required": false
+        },
+        {
+          "name": "slug",
+          "type": "text",
+          "required": true,
+          "options": {
+            "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+          }
+        },
+        {
+          "name": "collections",
+          "type": "relation",
+          "required": false,
+          "options": {
+            "collectionId": "collections",
+            "cascadeDelete": false,
+            "maxSelect": null,
+            "displayFields": ["name"]
+          }
+        }
+      ],
+      "listRule": "",
+      "viewRule": "",
+      "createRule": "@request.auth.id != \"\"",
+      "updateRule": "@request.auth.id != \"\"",
+      "deleteRule": "@request.auth.id != \"\""
+    },
+    {
+      "name": "collections",
+      "type": "base",
+      "schema": [
+        {
+          "name": "name",
+          "type": "text",
+          "required": true
+        },
+        {
+          "name": "description",
+          "type": "editor",
+          "required": true
+        },
+        {
+          "name": "featured_image",
+          "type": "file",
+          "required": true
+        },
+        {
+          "name": "slug",
+          "type": "text",
+          "required": true,
+          "options": {
+            "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+          }
+        },
+        {
+          "name": "collection_type",
+          "type": "select",
+          "required": true,
+          "options": {
+            "values": ["theme", "performer_type"]
+          }
+        }
+      ],
+      "listRule": "",
+      "viewRule": "",
+      "createRule": "@request.auth.id != \"\"",
+      "updateRule": "@request.auth.id != \"\"",
+      "deleteRule": "@request.auth.id != \"\""
+    },
+    {
+      "name": "booking_requests",
+      "type": "base",
+      "schema": [
+        {
+          "name": "company_name",
+          "type": "text",
+          "required": true
+        },
+        {
+          "name": "contact_name",
+          "type": "text",
+          "required": true
+        },
+        {
+          "name": "contact_email",
+          "type": "email",
+          "required": true
+        },
+        {
+          "name": "contact_phone",
+          "type": "text",
+          "required": true
+        },
+        {
+          "name": "event_date",
+          "type": "date",
+          "required": true
+        },
+        {
+          "name": "event_time",
+          "type": "text",
+          "required": true
+        },
+        {
+          "name": "event_location",
+          "type": "text",
+          "required": true
+        },
+        {
+          "name": "event_description",
+          "type": "editor",
+          "required": true
+        },
+        {
+          "name": "estimated_guests",
+          "type": "number",
+          "required": true
+        },
+        {
+          "name": "requested_characters",
+          "type": "relation",
+          "required": true,
+          "options": {
+            "collectionId": "characters",
+            "cascadeDelete": false,
+            "maxSelect": null,
+            "displayFields": ["name"]
+          }
+        },
+        {
+          "name": "special_requests",
+          "type": "editor",
+          "required": false
+        },
+        {
+          "name": "status",
+          "type": "select",
+          "required": true,
+          "options": {
+            "values": ["pending", "approved", "declined", "completed"]
+          },
+          "defaultValue": "pending"
+        }
+      ],
+      "listRule": "",
+      "viewRule": "",
+      "createRule": "",
+      "updateRule": "@request.auth.id != \"\"",
+      "deleteRule": "@request.auth.id != \"\""
+    }
+  ]
+}
