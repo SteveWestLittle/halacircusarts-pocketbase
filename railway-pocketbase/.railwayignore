@@ -1,0 +1,5 @@
+# Railway ignore file
+README.md
+copy-files.sh
+.git
+.gitignore
