@@ -1,0 +1,7 @@
+[build]
+# Disable nixpacks auto-detection - use Dockerfile instead
+buildCommand = "echo 'Using Dockerfile - nixpacks disabled'"
+
+[variables]
+# Force Railway to use Dockerfile
+RAILWAY_DOCKERFILE_PATH = "Dockerfile"
