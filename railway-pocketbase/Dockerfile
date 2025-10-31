@@ -18,4 +18,4 @@ RUN mkdir -p ./pb_data
 EXPOSE $PORT
 
 # Start PocketBase with Railway's PORT variable
-CMD ["sh", "-c", "./pocketbase serve --http=0.0.0.0:${PORT:-8090}"]
+CMD ./pocketbase serve --http=0.0.0.0:$PORT
