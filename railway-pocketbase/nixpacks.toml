@@ -1,11 +1,3 @@
-[build]
-# Disable nixpacks auto-detection - use Dockerfile instead
-buildCommand = "echo 'Using Dockerfile - nixpacks disabled'"
-
-[variables]
-# Force Railway to use Dockerfile
-RAILWAY_DOCKERFILE_PATH = "Dockerfile"
-
 [phases.setup]
 nixPkgs = ["wget", "unzip"]
 
@@ -14,8 +6,9 @@ cmds = [
   "wget https://github.com/pocketbase/pocketbase/releases/download/v0.22.21/pocketbase_0.22.21_linux_amd64.zip",
   "unzip pocketbase_0.22.21_linux_amd64.zip",
   "chmod +x pocketbase",
-  "rm pocketbase_0.22.21_linux_amd64.zip"
+  "rm pocketbase_0.22.21_linux_amd64.zip",
+  "mkdir -p pb_data"
 ]
 
 [start]
-cmd = "./pocketbase serve --http=0.0.0.0:$PORT"
+cmd = "sh -c './pocketbase serve --http=0.0.0.0:$PORT'"
