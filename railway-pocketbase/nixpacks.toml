@@ -12,4 +12,4 @@ cmds = [
 ]
 
 [start]
-cmd = "sh -c './pocketbase serve --http=0.0.0.0:$PORT'"
+cmd = "./start.sh"
