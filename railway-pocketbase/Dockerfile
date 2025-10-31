@@ -11,12 +11,15 @@ RUN apk --no-cache add ca-certificates wget unzip && \
 COPY pb_migrations ./pb_migrations/
 COPY pb_schema.json ./pb_schema.json
 
+# Copy startup script
+COPY start.sh ./start.sh
+RUN chmod +x ./start.sh
+
 # Create data directory for persistence
 RUN mkdir -p ./pb_data
 
 # Expose port (Railway will assign the PORT env var)
 EXPOSE $PORT
 
-# Start PocketBase with Railway's PORT variable
-ENTRYPOINT ["/bin/sh", "-c"]
-CMD ["./pocketbase serve --http=0.0.0.0:$PORT"]
+# Start PocketBase using wrapper script
+CMD ["./start.sh"]
