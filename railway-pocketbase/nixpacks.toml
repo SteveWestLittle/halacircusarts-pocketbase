@@ -7,6 +7,7 @@ cmds = [
   "unzip pocketbase_0.22.21_linux_amd64.zip",
   "chmod +x pocketbase",
   "rm pocketbase_0.22.21_linux_amd64.zip",
+  "chmod +x start.sh",
   "mkdir -p pb_data"
 ]
 
